@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Character Classes\ModifiedStat.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GameSettings.cs" Line="15" Column="2" />
+      <File FileName="Assets\Scripts\Character Classes\CharacterGenerator.cs" Line="140" Column="80" />
+      <File FileName="Assets\Scripts\Character Classes\ModifiedStat.cs" Line="42" Column="43" />
+      <File FileName="Assets\Scripts\Character Classes\Attribute.cs" Line="12" Column="19" />
+      <File FileName="Assets\Scripts\Character Classes\BaseCharacter.cs" Line="99" Column="3" />
+      <File FileName="Assets\Scripts\EnemyAttack.cs" Line="21" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
