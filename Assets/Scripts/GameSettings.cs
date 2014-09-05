@@ -22,7 +22,7 @@ public class GameSettings : MonoBehaviour {
 		GameObject pc = GameObject.Find ("PC");
 		PlayerCharacter pcClass = pc.GetComponent<PlayerCharacter> ();
 
-//		PlayerPrefs.DeleteAll ();
+		PlayerPrefs.DeleteAll ();
 
 		PlayerPrefs.SetString ("Player Name", pcClass.Name);
 
@@ -33,11 +33,21 @@ public class GameSettings : MonoBehaviour {
 		}
 
 		for (int cnt = 0; cnt < Enum.GetValues(typeof(VitalName)).Length; cnt++) {
-			PlayerPrefs.SetInt(((VitalName)cnt).ToString() + " - Base Value", pcClass.GetVital(cnt).CurValue);
-			PlayerPrefs.SetInt(((VitalName)cnt).ToString() + " - Exp To Level", pcClass.GetVital(cnt).CurValue);
+			PlayerPrefs.SetInt(((VitalName)cnt).ToString() + " - Base Value", pcClass.GetVital(cnt).BaseValue);
+			PlayerPrefs.SetInt(((VitalName)cnt).ToString() + " - Exp To Level", pcClass.GetVital(cnt).ExpToLevel);
 			PlayerPrefs.SetInt(((VitalName)cnt).ToString() + " - Current Value", pcClass.GetVital(cnt).CurValue);
 
-			pcClass.GetVital(cnt).GetModifyingAttributesString();
+			PlayerPrefs.SetString(((VitalName)cnt).ToString() + " - Mods", pcClass.GetVital(cnt).GetModifyingAttributesString());
+			//pcClass.GetVital(cnt).GetModifyingAttributesString();
+		}
+
+		for (int cnt = 0; cnt < Enum.GetValues(typeof(SkillName)).Length; cnt++) {
+			PlayerPrefs.SetInt(((SkillName)cnt).ToString() + " - Base Value", pcClass.GetSkill(cnt).BaseValue);
+			PlayerPrefs.SetInt(((SkillName)cnt).ToString() + " - Exp To Level", pcClass.GetSkill(cnt).ExpToLevel);
+
+			PlayerPrefs.SetString(((SkillName)cnt).ToString() + " - Mods", pcClass.GetSkill(cnt).GetModifyingAttributesString());
+			
+			//pcClass.GetSkill(cnt).GetModifyingAttributesString();
 		}
 	}
 

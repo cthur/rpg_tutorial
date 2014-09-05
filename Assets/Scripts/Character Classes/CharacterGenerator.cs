@@ -26,8 +26,6 @@ public class CharacterGenerator : MonoBehaviour {
 		GameObject pc = Instantiate (playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 		pc.name = "PC";
 
-		//_toon = new PlayerCharacter ();
-		//_toon.Awake ();
 		_toon = pc.GetComponent<PlayerCharacter> ();
 
 		pointsLeft = STARTING_POINTS;
@@ -46,14 +44,21 @@ public class CharacterGenerator : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		GUI.skin = mySkin;
+		//GUI.skin = mySkin;
 
 		DisplayName ();
 		DisplayPointsLeft ();
 		DisplayAttributes ();
 		DisplayVitals ();
 		DisplaySkills ();
-		DisplayCreateButton ();
+
+		if (_toon.Name == "" || pointsLeft > 0){
+			DisplayCreateLabel ();
+		}
+		else {
+			DisplayCreateButton ();
+		}
+
 	}
 
 	private void DisplayName() {
@@ -129,6 +134,13 @@ public class CharacterGenerator : MonoBehaviour {
 		GUI.Label (new Rect (250, 10, 100, 25), "Points Left: " + pointsLeft.ToString());
 	}
 
+	private void DisplayCreateLabel() {
+		GUI.Label (new Rect (Screen.width / 2 - 50,
+		                      statStartingPos + 10 * LINE_HEIGHT,
+		                      100,
+		                      LINE_HEIGHT), "Creating...", "Button");
+	}
+
 	private void DisplayCreateButton() {
 		if (GUI.Button (new Rect (Screen.width / 2 - 50,
 		                     statStartingPos + 10 * LINE_HEIGHT,
@@ -138,10 +150,19 @@ public class CharacterGenerator : MonoBehaviour {
 			GameSettings gsScript = GameObject.Find ("__GameSettings").GetComponent<GameSettings>();
 
 			//change current value of the vitals to the max modified value of that vital
+			UpdateCurVitalValues();
 
+
+			//save the character data
 			gsScript.SaveCharacterData();
 			Application.LoadLevel("demo");
 
+		}
+	}
+
+	private void UpdateCurVitalValues() {
+		for (int cnt = 0; cnt < Enum.GetValues(typeof(VitalName)).Length; cnt++) {
+			_toon.GetVital(cnt).CurValue = _toon.GetVital(cnt).AdjustedBaseValue;
 		}
 	}
 

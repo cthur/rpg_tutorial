@@ -33,16 +33,22 @@ public class ModifiedStat : BaseStat {
 	}
 
 	public string GetModifyingAttributesString() {
-		string temp;
+		string temp = "";
 
-		UnityEngine.Debug.Log (_mods.Count);
+		//UnityEngine.Debug.Log (_mods.Count);
 
 		for(int cnt = 0; cnt < _mods.Count; cnt++) {
-			UnityEngine.Debug.Log (_mods[cnt].attribute.Name);
-			UnityEngine.Debug.Log (_mods[cnt].ratio);
+			temp += _mods[cnt].attribute.Name;
+			temp += "_";
+			temp += _mods[cnt].ratio;
+
+			if(cnt < _mods.Count - 1) {
+				temp += "|";
+			}
 		}
 
-		return "";
+		UnityEngine.Debug.Log (temp);
+		return temp;
 	}
 
 }
