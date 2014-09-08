@@ -155,7 +155,7 @@ public class CharacterGenerator : MonoBehaviour {
 
 			//save the character data
 			gsScript.SaveCharacterData();
-			Application.LoadLevel("demo");
+			Application.LoadLevel("Level1");
 
 		}
 	}
