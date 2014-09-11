@@ -89,13 +89,13 @@ public class BaseCharacter : MonoBehaviour {
 
 	private void SetupVitalModifiers() {
 		//health
-		GetVital ((int)VitalName.Health).AddModifier (new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Constitution), ratio = .5f});
+		GetVital ((int)VitalName.Health).AddModifier (new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Constitution), .5f));
 
 		//energy
-		GetVital ((int)VitalName.Energy).AddModifier (new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Constitution), ratio = 1});
+		GetVital ((int)VitalName.Energy).AddModifier (new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Constitution), 1));
 
 		//mana
-		GetVital ((int)VitalName.Mana).AddModifier (new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Willpower), ratio = 1});
+		GetVital ((int)VitalName.Mana).AddModifier (new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Willpower), 1));
 	}
 
 	private void SetupSkillModifiers() {
