@@ -4,6 +4,8 @@ using System;
 
 public class GameSettings : MonoBehaviour {
 
+	public const string PLAYER_SPAWN_POINT = "Player Spawn Point";      // This is the name of the gameObject that the player will spawn at the start of the level.
+
 	void Awake() {
 		DontDestroyOnLoad (this);
 	}
