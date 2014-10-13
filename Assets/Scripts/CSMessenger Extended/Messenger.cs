@@ -22,6 +22,8 @@
 // Messenger<float>.Broadcast<string>("myEvent", 1.0f, MyEventCallback);
 // private void MyEventCallback(string s1) { Debug.Log(s1"); }
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public enum MessengerMode {
@@ -168,7 +170,7 @@ static public class Messenger<T> {
 		MessengerInternal.RemoveListener(eventType, handler);
 	}
 	
-	static public void RemoveListener<T, TReturn>(string eventType, Func<T, TReturn> handler) {
+	static public void RemoveListener<TReturn>(string eventType, Func<T, TReturn> handler) {
 		MessengerInternal.RemoveListener(eventType, handler);
 	}
 	
