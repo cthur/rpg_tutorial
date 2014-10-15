@@ -10,13 +10,17 @@ using UnityEngine;
 using System.Collections;
 
 public class VitalBar : MonoBehaviour {
-	private bool _isPlayerHealthBar;           // This boolean value shows whether the player health bar or the mob health bar
+	public bool _isPlayerHealthBar;           // This boolean value shows whether the player health bar or the mob health bar
+
 	private int _maxBarLength;                 // This is how large the vital bar can be if the target is at 100% health
 	private int _curBarLength;                 // This is the current length of the vital bar
+	private GUITexture _display;
 
 	// Use this for initialization
 	void Start () {
-		_isPlayerHealthBar = true;
+//		_isPlayerHealthBar = true;
+		_display = gameObject.GetComponent<GUITexture>();
+		_maxBarLength = (int)_display.pixelInset.width;
 
 		OnEnable();
 	}
@@ -47,8 +51,8 @@ public class VitalBar : MonoBehaviour {
 	// This method will calculate the total size of the healthbar in relation to the % of health the target has left
 	public void OnChangeHealthBarSize(int curHealth, int maxHealth) {
 //		Debug.Log("We heard an event: curHealth = " + curHealth + " - maxHealth = " + maxHealth);
-		_curBarLength = (curHealth / maxHealth) * _maxBarLength;      // This calculates the current bar length based on the players health %
-
+		_curBarLength = (int)((curHealth / (float)maxHealth) * _maxBarLength);      // This calculates the current bar length based on the players health %
+		_display.pixelInset = new Rect(_display.pixelInset.x, _display.pixelInset.y, _curBarLength, _display.pixelInset.height);
 	}
 
 	// Setting the healthbar to the player or mob
