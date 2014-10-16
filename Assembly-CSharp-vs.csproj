@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\Mob.cs" />
      <Compile Include="Assets\Scripts\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\TargetMob.cs" />
      <Compile Include="Assets\Scripts\Targetting.cs" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>D:/Development/Games/unity/projects/rpg_first/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>

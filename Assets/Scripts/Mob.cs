@@ -7,6 +7,8 @@ public class Mob : BaseCharacter {
 	void Start () {
 		GetPrimaryAttribute((int)AttributeName.Constitution).BaseValue = 100;
 		GetVital ((int)VitalName.Health).Update();
+
+		Name = "Slug Mob";
 	}
 	
 	// Update is called once per frame
