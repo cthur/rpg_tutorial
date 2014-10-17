@@ -16,11 +16,16 @@ public class VitalBar : MonoBehaviour {
 	private int _curBarLength;                 // This is the current length of the vital bar
 	private GUITexture _display;
 
+	void Awake() {
+		_display = gameObject.GetComponent<GUITexture>();
+	}
+
 	// Use this for initialization
 	void Start () {
 //		_isPlayerHealthBar = true;
-		_display = gameObject.GetComponent<GUITexture>();
 		_maxBarLength = (int)_display.pixelInset.width;
+		_curBarLength = _maxBarLength;
+		_display.pixelInset = CalculatePosition();
 
 		OnEnable();
 	}
@@ -35,7 +40,9 @@ public class VitalBar : MonoBehaviour {
 		if(_isPlayerHealthBar) {
 			Messenger<int, int>.AddListener("player health update", OnChangeHealthBarSize);
 		} else {
+			ToggleDisplay(false);
 			Messenger<int, int>.AddListener("mob health update", OnChangeHealthBarSize);
+			Messenger<bool>.AddListener("show mob vitalbars", ToggleDisplay);
 		}
 	}
 
@@ -45,6 +52,7 @@ public class VitalBar : MonoBehaviour {
 			Messenger<int, int>.RemoveListener("player health update", OnChangeHealthBarSize);
 		} else {
 			Messenger<int, int>.RemoveListener("mob health update", OnChangeHealthBarSize);
+			Messenger<bool>.AddListener("show mob vitalbars", ToggleDisplay);
 		}
 	}
 
@@ -52,11 +60,28 @@ public class VitalBar : MonoBehaviour {
 	public void OnChangeHealthBarSize(int curHealth, int maxHealth) {
 //		Debug.Log("We heard an event: curHealth = " + curHealth + " - maxHealth = " + maxHealth);
 		_curBarLength = (int)((curHealth / (float)maxHealth) * _maxBarLength);      // This calculates the current bar length based on the players health %
-		_display.pixelInset = new Rect(_display.pixelInset.x, _display.pixelInset.y, _curBarLength, _display.pixelInset.height);
+//		_display.pixelInset = new Rect(_display.pixelInset.x, _display.pixelInset.y, _curBarLength, _display.pixelInset.height);
+		_display.pixelInset = CalculatePosition();
 	}
 
 	// Setting the healthbar to the player or mob
 	public void SetPlayerHealthBar (bool b) {
 		_isPlayerHealthBar = b;
+	}
+
+	private Rect CalculatePosition() {
+		float yPos = _display.pixelInset.y / 2 - 10;
+
+		if(!_isPlayerHealthBar) {
+			float xPos = (_maxBarLength - _curBarLength) - (_maxBarLength / 4 + 10);
+
+			return new Rect(xPos, yPos, _curBarLength, _display.pixelInset.height);
+		}
+
+		return new Rect(_display.pixelInset.x, yPos, _curBarLength, _display.pixelInset.height);
+	}
+
+	private void ToggleDisplay(bool show) {
+		_display.enabled = show;
 	}
 }
