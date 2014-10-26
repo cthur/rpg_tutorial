@@ -16,6 +16,7 @@ public class BaseStat {
 	private int _buffValue;                    // the amount of the buff to this stat
 	private int _expToLevel;                   // the total amount of exp needed to raise this skill
 	private float _levelModifier;              // the modifier applied to the exp needed to raise the skill
+	private string _name;                          // This is the name of the attribute 
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="BaseStat"/> class.
@@ -27,6 +28,7 @@ public class BaseStat {
 		_buffValue = 0;
 		_levelModifier = 1.1f;
 		_expToLevel = STARTING_EXP_COST;
+		_name = "";
 	}
 
 #region Basic Setters and Getters
@@ -64,6 +66,15 @@ public class BaseStat {
 	public float LevelModifier {
 		get{ return _levelModifier; }
 		set{ _levelModifier = value; }
+	}
+
+	/// <summary>
+	/// 	Gets or sets the _name.
+	/// </summary>
+	/// <value>The _name.</value>
+	public string Name {
+		get { return _name; }
+		set { _name = value; }
 	}
 #endregion
 

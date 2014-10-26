@@ -20,8 +20,7 @@ public class Attribute : BaseStat {
 	public Attribute() {
 		Debug.Log ("Attribute Created");
 
-		_name = "";
-		ExpToLevel = 50;
+		ExpToLevel = STARTING_EXP_COST;
 		LevelModifier = 1.05f;
 	}
 
